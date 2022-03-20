@@ -1,0 +1,80 @@
+:root {
+  --ui-radius: 0.3em;
+  --color-accent: rgb(96, 65, 153);
+  --color-background: rgb(20, 17, 27);
+  --color-panel: rgb(43, 35, 63);
+  --color-text: #ffddff;
+  --color-darkscreen: #000000a0;
+  font-size: 62.5%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 1.4em;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+
+button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1em solid var(--color-accent);
+  border-radius: var(--ui-radius);
+  background-color: var(--color-panel);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+
+input[type=text],
+input[type=number],
+textarea {
+  padding: 0.25em;
+  border-radius: var(--ui-radius);
+  border: 0.1em solid var(--color-accent);
+  background-color: var(--color-panel);
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+}
+
+
+.global-darkscreen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-darkscreen);
+}
+
+
+.global-tab-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background-color: var(--color-background);
+  border-radius: var(--ui-radius);
+  gap: 1em;
+}

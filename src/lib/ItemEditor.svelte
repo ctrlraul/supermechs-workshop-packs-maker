@@ -64,7 +64,7 @@ function onMakeStat (key: keyof Item['stats'], value: number & [number, number])
 
 
 {#if $selectedItem !== null}
-  <div class="item-editor" on:click={onClickOut}>
+  <div class="global-darkscreen" on:click={onClickOut}>
     
     <div class="meta">
 
@@ -145,19 +145,6 @@ function onMakeStat (key: keyof Item['stats'], value: number & [number, number])
 
 
 <style>
-
-.item-editor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-darkscreen);
-}
-
 
 .meta {
   position: relative;

@@ -211,3 +211,20 @@ export function createSyntheticItemAttachment (type: Item['type'], width: number
   }
 
 }
+
+
+export function getNextItemID (): Item['id'] {
+  
+  if (itemsPackData === null) {
+    throw new Error('No pack imported')
+  }
+
+  let highestID: Item['id'] = 0
+
+  for (const item of itemsPackData.items) {
+    highestID = Math.max(highestID, item.id)
+  }
+
+  return highestID + 1
+
+}

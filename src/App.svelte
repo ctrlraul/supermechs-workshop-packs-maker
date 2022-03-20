@@ -4,13 +4,15 @@
 import { importItemsPack } from './items/ItemsManager'
 import { itemsPackData } from './itemsPackDataStore'
 import ItemsListSection from './lib/ItemsListSection.svelte'
-
-
-import ItemEditor from './lib/ItemEditor.svelte';
+import ItemEditor from './lib/ItemEditor.svelte'
 import { onMount } from 'svelte';
-import { loadStatImages } from './stats/StatsManager';
-import type { ItemsPackV1, RawItemV1 } from './items/importItemsPackV1';
-import downloadJSON from './utils/downloadJSON';
+import { loadStatImages } from './stats/StatsManager'
+import downloadJSON from './utils/downloadJSON'
+
+
+import type { ItemsPackV1, RawItemV1 } from './items/importItemsPackV1'
+import type { Item } from './items/Item'
+import ItemCreator from './lib/ItemCreator.svelte';
 
 
 
@@ -20,6 +22,7 @@ $: items = $itemsPackData ? $itemsPackData.items : []
 $: packFileName = $itemsPackData ? $itemsPackData.name : ''
 
 let importing = false
+let creatingItem = false
 let progress = 0
 
 
@@ -97,7 +100,8 @@ function downloadPack (): void {
       transform_range: item.transformRange,
       type: item.type,
       width: item.width,
-      height: item.height
+      height: item.height,
+      tags: rawItem.tags,
     }
 
     if (item.attachment !== null) {
@@ -135,9 +139,12 @@ function downloadPack (): void {
 }
 
 
-onMount(() => {
-  loadStatImages()
-})
+function createItem (item: Item): void {
+  creatingItem = false
+}
+
+
+onMount(() => loadStatImages())
 
 </script>
 
@@ -191,6 +198,8 @@ onMount(() => {
 
           <button>View JSON (soon)</button>
 
+          <!-- <button on:click={() => creatingItem = true}>Create Item</button> -->
+
         </div>
 
       </div>
@@ -219,6 +228,11 @@ onMount(() => {
     <div class="popup">
       Please wait... ({(progress * 100).toFixed(1)}%)
     </div>
+  {/if}
+
+
+  {#if creatingItem}
+    <ItemCreator {createItem} />
   {/if}
 
 
